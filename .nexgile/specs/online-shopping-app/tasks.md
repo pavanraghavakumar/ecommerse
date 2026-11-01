@@ -9,6 +9,7 @@
     - _Verify: npm test_
     - _Verify: npx tsc --noEmit_
     - _Area: setup_
+    - _Issue: #1_
 
 - [ ] 2. Product listings and product page
   - [ ] 2.1 Product listings and product page
@@ -19,6 +20,7 @@
     - _Verify: npm test -- products_
     - _Verify: npx tsc --noEmit_
     - _Area: ui_
+    - _Issue: #2_
 
 - [ ] 3. Sign in and register
   - [ ] 3.1 Sign in and register
@@ -29,6 +31,7 @@
     - _Verify: npm test -- auth_
     - _Verify: npx tsc --noEmit_
     - _Area: api_
+    - _Issue: #3_
 
 - [ ] 4. Cart
   - [ ] 4.1 Cart
@@ -39,6 +42,7 @@
     - _Verify: npm test -- cart_
     - _Verify: npx tsc --noEmit_
     - _Area: api_
+    - _Issue: #5_
 
 - [ ] 5. Wishlist
   - [ ] 5.1 Wishlist
@@ -49,6 +53,7 @@
     - _Verify: npm test -- wishlist_
     - _Verify: npx tsc --noEmit_
     - _Area: api_
+    - _Issue: #6_
 
 - [ ] 6. Checkout and card payment
   - [ ] 6.1 Checkout and card payment
@@ -59,6 +64,7 @@
     - _Verify: npm test -- checkout_
     - _Verify: npx tsc --noEmit_
     - _Area: api_
+    - _Issue: #8_
 
 - [ ] 7. Orders
   - [ ] 7.1 Orders
@@ -69,6 +75,7 @@
     - _Verify: npm test -- orders_
     - _Verify: npx tsc --noEmit_
     - _Area: api_
+    - _Issue: #13_
 
 - [ ] 8. Admin dashboard
   - [ ] 8.1 Admin dashboard
@@ -79,6 +86,7 @@
     - _Verify: npm test -- summary_
     - _Verify: npx tsc --noEmit_
     - _Area: ui_
+    - _Issue: #7_
 
 - [ ] 9. Admin products
   - [ ] 9.1 Admin products
@@ -89,6 +97,7 @@
     - _Verify: npm test -- adminProducts_
     - _Verify: npx tsc --noEmit_
     - _Area: api_
+    - _Issue: #9_
 
 - [ ] 10. Admin orders
   - [ ] 10.1 Admin orders
@@ -99,6 +108,7 @@
     - _Verify: npm test -- adminOrders_
     - _Verify: npx tsc --noEmit_
     - _Area: api_
+    - _Issue: #10_
 
 - [ ] 11. Admin shoppers
   - [ ] 11.1 Admin shoppers
@@ -109,6 +119,7 @@
     - _Verify: npm test -- adminShoppers_
     - _Verify: npx tsc --noEmit_
     - _Area: api_
+    - _Issue: #11_
 
 - [ ] 12. Admin reports
   - [ ] 12.1 Admin reports
@@ -119,6 +130,7 @@
     - _Verify: npm test -- reports_
     - _Verify: npx tsc --noEmit_
     - _Area: api_
+    - _Issue: #12_
 
 - [ ] 13. Store quality
   - [ ] 13.1 Store quality
@@ -130,6 +142,7 @@
     - _Verify: npm test -- accessibility_
     - _Verify: npm test -- health_
     - _Area: api_
+    - _Issue: #14_
 
 - [ ] 14. Deployment setup
   - [ ] 14.1 Deployment setup
@@ -141,3 +154,4 @@
     - _Verify: docker build -t online-shopping-app:verify ._
     - _Mode: devops_
     - _Area: deploy_
+    - _Issue: #4_
