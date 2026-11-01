@@ -4,3 +4,39 @@
 .nexgile/greenfield/checkpoints/
 .nexgile/greenfield/mockups/
 docs/input/
+
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# SQLite database files
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+prisma/dev.db
+prisma/*.db
+prisma/*.db-journal
+
+# Test and tool output
+coverage/
+test-results/
+playwright-report/
+blob-report/
+.vitest/
+
+# Logs and editor files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db

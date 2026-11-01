@@ -1,0 +1,126 @@
+// Prisma schema for the Online Shopping App (SQLite).
+// Money is stored in integer cents; dates are ISO timestamps.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  address      String
+  role         String   @default("shopper") // "shopper" or "admin"
+  createdAt    DateTime @default(now())
+
+  cart         Cart?
+  wishlist     WishlistItem[]
+  orders       Order[]
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  priceCents  Int
+  stock       Int      @default(0)
+  category    String
+  imageUrl    String
+  status      String   @default("draft") // "draft", "active" or "hidden"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  cartLines   CartLine[]
+  wishlist    WishlistItem[]
+  orderLines  OrderLine[]
+
+  @@index([status, category])
+  @@index([name])
+}
+
+model Cart {
+  id        String   @id @default(cuid())
+  accountId String   @unique
+  updatedAt DateTime @updatedAt
+
+  account   Account    @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  lines     CartLine[]
+}
+
+model CartLine {
+  id        String @id @default(cuid())
+  cartId    String
+  productId String
+  quantity  Int    @default(1)
+
+  cart      Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@unique([cartId, productId])
+  @@index([productId])
+}
+
+model WishlistItem {
+  id        String   @id @default(cuid())
+  accountId String
+  productId String
+  addedAt   DateTime @default(now())
+
+  account   Account @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@unique([accountId, productId])
+  @@index([productId])
+}
+
+model Order {
+  id              String   @id @default(cuid())
+  orderNumber     String   @unique
+  accountId       String
+  totalCents      Int
+  paymentStatus   String   @default("paid") // "paid"
+  status          String   @default("placed") // "placed", "paid", "shipped", "delivered", "cancelled", "refunded"
+  deliveryAddress String
+  placedAt        DateTime @default(now())
+
+  account         Account     @relation(fields: [accountId], references: [id])
+  lines           OrderLine[]
+
+  @@index([accountId, placedAt])
+  @@index([placedAt])
+}
+
+model OrderLine {
+  id             String @id @default(cuid())
+  orderId        String
+  productId      String
+  productName    String
+  unitPriceCents Int
+  quantity       Int
+
+  order          Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product        Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actorId   String
+  actorName String
+  action    String
+  entity    String // "product" or "order"
+  entityId  String
+  detail    String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([entity, entityId])
+}
